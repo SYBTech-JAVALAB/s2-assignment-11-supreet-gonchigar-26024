@@ -1,0 +1,57 @@
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+
+public class TrafficLightFX extends Application {
+
+    public void start(Stage stage) {
+
+        Label message = new Label("");
+        message.setFont(new Font(28));
+
+        RadioButton red = new RadioButton("Red");
+        RadioButton yellow = new RadioButton("Yellow");
+        RadioButton green = new RadioButton("Green");
+
+        ToggleGroup group = new ToggleGroup();
+        red.setToggleGroup(group);
+        yellow.setToggleGroup(group);
+        green.setToggleGroup(group);
+
+        red.setOnAction(e -> {
+            message.setText("STOP");
+            message.setTextFill(Color.RED);
+        });
+
+        yellow.setOnAction(e -> {
+            message.setText("READY");
+            message.setTextFill(Color.GOLD);
+        });
+
+        green.setOnAction(e -> {
+            message.setText("GO");
+            message.setTextFill(Color.GREEN);
+        });
+
+        VBox root = new VBox(15);
+        root.setAlignment(Pos.CENTER);
+        root.getChildren().addAll(message, red, yellow, green);
+
+        Scene scene = new Scene(root, 300, 250);
+
+        stage.setTitle("Traffic Light System");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
